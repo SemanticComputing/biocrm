@@ -1,0 +1,241 @@
+# baseURI: http://ldf.fi/schema/bioc/
+# imports: http://www.cidoc-crm.org/cidoc-crm/
+
+@prefix : <http://ldf.fi/schema/bioc/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:
+  a owl:Ontology ;
+  owl:imports <http://www.cidoc-crm.org/cidoc-crm/> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+:Actor
+  a owl:Class ;
+  rdfs:label "Actor" ;
+  rdfs:subClassOf :Entity ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E39_Actor> ;
+.
+:Actor_Appellation
+  a owl:Class ;
+  rdfs:label "Actor Appellation" ;
+  rdfs:subClassOf :Entity ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E82_Actor_Appellation> ;
+.
+:Actor_Role
+  a owl:Class ;
+  rdfs:label "Actor Role" ;
+  rdfs:subClassOf :Entity_Role ;
+.
+:Alternative_Name
+  a owl:Class ;
+  rdfs:label "Alternative Name" ;
+  rdfs:subClassOf :Actor_Appellation ;
+.
+:Binary_Relationship_Role
+  a owl:Class ;
+  rdfs:comment "This is an atemporal role, i.e., the role exists for the duration of its bearer's existence." ;
+  rdfs:label "Binary Relationship Role" ;
+  rdfs:subClassOf :Actor_Role ;
+.
+:Document
+  a owl:Class ;
+  rdfs:label "Document" ;
+  rdfs:subClassOf :Entity ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E31_Document> ;
+.
+:Entity
+  a owl:Class ;
+  rdfs:label "Entity" ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity> ;
+  rdfs:subClassOf owl:Thing ;
+.
+:Entity_Role
+  a owl:Class ;
+  rdfs:label "Entity Role" ;
+  rdfs:subClassOf :Entity ;
+.
+:Event
+  a owl:Class ;
+  rdfs:label "Event" ;
+  rdfs:subClassOf :Entity ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E5_Event> ;
+.
+:Event_Role
+  a owl:Class ;
+  rdfs:comment "This is a temporal role, i.e., the role exists only for the duration of the event the it (its bearer) participates in." ;
+  rdfs:label "Event Role" ;
+  rdfs:subClassOf :Actor_Role ;
+.
+:Family_Relationship_Role
+  a owl:Class ;
+  rdfs:label "Family Relationship Role" ;
+  rdfs:subClassOf :Person_Relationship_Role ;
+.
+:Gender
+  a owl:Class ;
+  rdfs:label "Gender" ;
+  rdfs:subClassOf :Unary_Role ;
+.
+:Group
+  a owl:Class ;
+  rdfs:label "Group" ;
+  rdfs:subClassOf :Actor ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
+.
+:Group_Relationship_Role
+  a owl:Class ;
+  rdfs:label "Group Relationship Role" ;
+  rdfs:subClassOf :Binary_Relationship_Role ;
+.
+:Intergroup_Relationship_Role
+  a owl:Class ;
+  rdfs:label "Inter Group Relationship Role" ;
+  rdfs:subClassOf :Binary_Relationship_Role ;
+.
+:Nationality
+  a owl:Class ;
+  rdfs:label "Nationality" ;
+  rdfs:subClassOf :Unary_Role ;
+.
+:Occupation
+  a owl:Class ;
+  rdfs:label "Occupation" ;
+  rdfs:subClassOf :Unary_Role ;
+.
+:Official_Name
+  a owl:Class ;
+  rdfs:label "Official Name" ;
+  rdfs:subClassOf :Actor_Appellation ;
+.
+:Person
+  a owl:Class ;
+  rdfs:label "Person" ;
+  rdfs:subClassOf :Actor ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E21_Person> ;
+.
+:Person_Relationship_Role
+  a owl:Class ;
+  rdfs:label "Person Relationship Role" ;
+  rdfs:subClassOf :Binary_Relationship_Role ;
+.
+:Place
+  a owl:Class ;
+  rdfs:label "Place" ;
+  rdfs:subClassOf :Entity ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E53_Place> ;
+.
+:Social_Relationship_Role
+  a owl:Class ;
+  rdfs:label "Social Relationship Role" ;
+  rdfs:subClassOf :Person_Relationship_Role ;
+.
+:Thing
+  a owl:Class ;
+  rdfs:label "Thing" ;
+  rdfs:subClassOf :Entity ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E70_Thing> ;
+.
+:Thing_Role
+  a owl:Class ;
+  rdfs:label "Thing Role" ;
+  rdfs:subClassOf :Entity_Role ;
+.
+:Time-Span
+  a owl:Class ;
+  rdfs:label "Time-Span" ;
+  rdfs:subClassOf :Entity ;
+  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span> ;
+.
+:Unary_Role
+  a owl:Class ;
+  rdfs:comment "This is an atemporal role, i.e., the role exists for the duration of its bearer's existence." ;
+  rdfs:label "Unary Role" ;
+  rdfs:subClassOf :Actor_Role ;
+.
+:bearer_of
+  a owl:ObjectProperty ;
+  rdfs:domain :Actor ;
+  rdfs:label "bearer of" ;
+  rdfs:range :Actor_Role ;
+  owl:inverseOf :inheres_in ;
+.
+:has_family_relation
+  a owl:ObjectProperty ;
+  rdfs:domain :Person ;
+  rdfs:label "has family relation" ;
+  rdfs:range :Family_Relationship_Role ;
+  rdfs:subPropertyOf :has_person_relation ;
+.
+:has_gender
+  a owl:ObjectProperty ;
+  rdfs:domain :Person ;
+  rdfs:label "has gender" ;
+  rdfs:range :Gender ;
+  rdfs:subPropertyOf :bearer_of ;
+.
+:has_group_relation
+  a owl:ObjectProperty ;
+  rdfs:domain :Person ;
+  rdfs:label "has group relation" ;
+  rdfs:range :Group_Relationship_Role ;
+  rdfs:subPropertyOf :has_relation ;
+.
+:has_intergroup_relation
+  a owl:ObjectProperty ;
+  rdfs:domain :Group ;
+  rdfs:label "has intergroup relation" ;
+  rdfs:range :Intergroup_Relationship_Role ;
+  rdfs:subPropertyOf :has_relation ;
+.
+:has_nationality
+  a owl:ObjectProperty ;
+  rdfs:domain :Person ;
+  rdfs:label "has nationality" ;
+  rdfs:range :Nationality ;
+  rdfs:subPropertyOf :bearer_of ;
+.
+:has_occupation
+  a owl:ObjectProperty ;
+  rdfs:domain :Person ;
+  rdfs:label "has occupation" ;
+  rdfs:range :Occupation ;
+  rdfs:subPropertyOf :bearer_of ;
+.
+:has_person_relation
+  a owl:ObjectProperty ;
+  rdfs:domain :Person ;
+  rdfs:label "has person relation" ;
+  rdfs:range :Person_Relationship_Role ;
+  rdfs:subPropertyOf :has_relation ;
+.
+:has_relation
+  a owl:ObjectProperty ;
+  rdfs:domain :Actor ;
+  rdfs:label "has relation" ;
+  rdfs:range :Binary_Relationship_Role ;
+  owl:inverseOf :in_relation_to ;
+.
+:has_social_relation
+  a owl:ObjectProperty ;
+  rdfs:domain :Person ;
+  rdfs:label "has social relation" ;
+  rdfs:range :Social_Relationship_Role ;
+  rdfs:subPropertyOf :has_person_relation ;
+.
+:in_relation_to
+  a owl:ObjectProperty ;
+  rdfs:domain :Actor_Role ;
+  rdfs:label "in relation to" ;
+  rdfs:range :Actor ;
+  owl:inverseOf :has_relation ;
+.
+:inheres_in
+  a owl:ObjectProperty ;
+  rdfs:domain :Actor_Role ;
+  rdfs:label "inheres in" ;
+  rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E77_Persistent_Item> ;
+  owl:inverseOf :bearer_of ;
+.
