@@ -162,6 +162,12 @@
   rdfs:range :Actor_Role ;
   owl:inverseOf :inheres_in ;
 .
+:had_participant_in_role
+  a owl:ObjectProperty ;
+  rdfs:domain :Event ;
+  rdfs:label "had participant in role" ;
+  rdfs:range :Actor_Role ;
+.
 :has_family_relation
   a owl:ObjectProperty ;
   rdfs:domain :Person ;
@@ -238,4 +244,10 @@
   rdfs:label "inheres in" ;
   rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E77_Persistent_Item> ;
   owl:inverseOf :bearer_of ;
+.
+:occurred_in_the_presence_of_in_role
+  a owl:ObjectProperty ;
+  rdfs:domain :Event ;
+  rdfs:label "occurred in the presence of in role" ;
+  rdfs:range :Thing_Role ;
 .
