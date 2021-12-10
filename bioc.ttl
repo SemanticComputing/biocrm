@@ -157,9 +157,9 @@
 .
 :bearer_of
   a owl:ObjectProperty ;
-  rdfs:domain :Actor ;
+  rdfs:domain :Entity ;
   rdfs:label "bearer of" ;
-  rdfs:range :Actor_Role ;
+  rdfs:range :Entity_Role ;
   owl:inverseOf :inheres_in ;
 .
 :had_participant_in_role
@@ -240,9 +240,9 @@
 .
 :inheres_in
   a owl:ObjectProperty ;
-  rdfs:domain :Actor_Role ;
+  rdfs:domain :Entity_Role ;
   rdfs:label "inheres in" ;
-  rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E77_Persistent_Item> ;
+  rdfs:range :Entity ;
   owl:inverseOf :bearer_of ;
 .
 :occurred_in_the_presence_of_in_role
